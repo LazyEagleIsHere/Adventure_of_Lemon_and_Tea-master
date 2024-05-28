@@ -220,7 +220,7 @@ function Start() {
     current_level = 0
     scene.setBackgroundImage(assets.image`blank`)
     levels = [
-    tiles.createMap(tilemap`level1`),
+    tiles.createMap(tilemap`level8`),
     tiles.createMap(tilemap`level3`),
     tiles.createMap(tilemap`level4`),
     tiles.createMap(tilemap`level5`),
