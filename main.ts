@@ -227,7 +227,7 @@ function Start() {
     tiles.createMap(tilemap`level6`),
     tiles.createMap(tilemap`level7`)
     ]
-    info.startCountdown(90)
+    info.startCountdown(120)
     info.setLife(3)
     initLevel(false)
     initPlayers()
