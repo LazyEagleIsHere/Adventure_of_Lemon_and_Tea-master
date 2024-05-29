@@ -220,7 +220,7 @@ function Start() {
     current_level = 0
     scene.setBackgroundImage(assets.image`blank`)
     levels = [
-    tiles.createMap(tilemap`level1`),
+    tiles.createMap(tilemap`level8`),
     tiles.createMap(tilemap`level3`),
     tiles.createMap(tilemap`level4`),
     tiles.createMap(tilemap`level5`),
@@ -2311,6 +2311,8 @@ let Lemon: Sprite = null
 let active_player_sprite: Sprite = null
 let resquest = false
 resquest = true
+leaderboard.setScoreType(ScoreTypes.HighestScore)
+leaderboard.setLeaderboardProperty(LeaderboardProperty.MaxNameLenght, 12)
 Hi()
 game.onUpdate(function () {
     if (!(orange_pressed) && (Tea.tileKindAt(TileDirection.Center, assets.tile`tile3`) || Lemon.tileKindAt(TileDirection.Center, assets.tile`tile3`))) {
@@ -2323,14 +2325,13 @@ game.onUpdate(function () {
     } else if (tiles.tileIs(tiles.locationOfSprite(Tea), assets.tile`tile2`) && tiles.tileIs(tiles.locationOfSprite(Lemon), assets.tile`tile2`)) {
         showScore()
         effects.confetti.startScreenEffect(500)
-        console.log("Level" + current_level)
         tiles.destroySpritesOfKind(SpriteKind.Player)
         current_level += 1
         initLevel(false)
         initPlayers()
     } else if (Tea.bottom >= tiles.tilemapRows() * tiles.tileWidth() || Lemon.bottom >= tiles.tilemapRows() * tiles.tileWidth()) {
         game.splash("Ooops!", "Try again")
-        info.changeCountdownBy(-10)
+        info.changeCountdownBy(10)
         info.changeLifeBy(-1)
         tiles.destroySpritesOfKind(SpriteKind.Player)
         initLevel(true)
