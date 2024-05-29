@@ -220,14 +220,15 @@ function Start() {
     current_level = 0
     scene.setBackgroundImage(assets.image`blank`)
     levels = [
-    tiles.createMap(tilemap`level8`),
+    tiles.createMap(tilemap`level1`),
     tiles.createMap(tilemap`level3`),
     tiles.createMap(tilemap`level4`),
     tiles.createMap(tilemap`level5`),
     tiles.createMap(tilemap`level6`),
-    tiles.createMap(tilemap`level7`)
+    tiles.createMap(tilemap`level7`),
+    tiles.createMap(tilemap`level8`)
     ]
-    info.startCountdown(120)
+    info.startCountup()
     info.setLife(3)
     initLevel(false)
     initPlayers()
@@ -1424,9 +1425,6 @@ function HowToPlay() {
     game.splash("Let's get started!")
     Now()
 }
-info.onCountdownEnd(function () {
-    game.gameOver(false)
-})
 function scheduleWallUpdate () {
     if (sprites.allOfKind(SpriteKind.WallUpdateTrigger).length == 0) {
         if (orange_pressed && orange_wall_extension_height > 0) {
@@ -2325,6 +2323,7 @@ game.onUpdate(function () {
     } else if (tiles.tileIs(tiles.locationOfSprite(Tea), assets.tile`tile2`) && tiles.tileIs(tiles.locationOfSprite(Lemon), assets.tile`tile2`)) {
         showScore()
         effects.confetti.startScreenEffect(500)
+        console.log("Level" + current_level)
         tiles.destroySpritesOfKind(SpriteKind.Player)
         current_level += 1
         initLevel(false)
